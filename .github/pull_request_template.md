@@ -26,6 +26,11 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 * Toolchain:
 * SDK:
 
+## Reviewer Checks
+
+- [ ] Approved
+- [ ] Need Changes
+
 # Checklist:
 
 - [ ] My code follows the style guidelines of this project
