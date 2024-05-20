@@ -1,11 +1,9 @@
 "use client";
-import React from 'react';
-import CustomButton from './components/CustomButton';
+import React from "react";
+import CustomButton from "./components/CustomButton";
 
 const NotFoundPage: React.FC = () => {
-    function handleClick(): void {
-
-    }
+  function handleClick(): void {}
 
     return (
         <div className="min-h-screen flex items-center justify-center">
