@@ -1,7 +1,6 @@
 {
   "env": {
-    "node": true,
-    "es2021": true
+    "node": true
   },
   "extends": [
     "next/core-web-vitals",
@@ -9,16 +8,7 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": 12,
-    "sourceType": "module",
-    "project": "./tsconfig.json"
-  },
-  "plugins": [
-    "import",
-    "unused-imports",
-    "@typescript-eslint"
-  ],
+  "plugins": ["import", "unused-imports", "@typescript-eslint"],
   "settings": {
     "import/resolver": {
       "node": {
@@ -44,6 +34,7 @@
         "argsIgnorePattern": "^_"
       }
     ],
+
     "no-eq-null": "warn",
     "import/order": [
       "warn",
