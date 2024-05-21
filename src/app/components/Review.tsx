@@ -34,7 +34,7 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
     };
 
     return (
-        <div className='relative rounded-2xl w-80 md:w-96 xl:w-2/6 2xl:w-1/5 custom-w-3xl hover:shadow-2xl hover:transform transition ease-in-out delay-50 hover:cursor-pointer hover:-translate-y-1 border border-gray-300 flex flex-col font-semibold shadow-lg'>
+        <div className='relative rounded-2xl w-full sm:w-80 md:w-96 lg:w-[28rem] 2xl:w-[28rem] hover:shadow-2xl hover:transform transition ease-in-out delay-50 hover:cursor-pointer hover:-translate-y-1 border border-gray-300 flex flex-col font-semibold shadow-lg'>
             <div className='flex-grow mx-6 my-6 text-sm md:text-base text-green-500'>
                 <div className='flex'>
                     <p>{formattedDate}</p>
@@ -45,7 +45,7 @@ const ReviewComponent: React.FC<ReviewComponentProps> = ({
                     </svg>
                     <p className='text-slate-500 text-base'>{starRatingFormatted}</p>
                 </div>
-                <div className='flex text-sm text-slate-400 mt-3' style={{ minHeight: '80px' }}>
+                <div className='flex text-sm text-start text-slate-400 mt-3' style={{ minHeight: '80px' }}>
                     <div ref={reviewRef} className={`overflow-hidden ${expanded ? '' : 'line-clamp-5'}`} style={{ wordWrap: 'break-word' }}>
                         <p>{review}</p>
                     </div>
