@@ -27,7 +27,7 @@ const Hero = () => {
       `}</style>
       <div className="bg-image w-screen h-full">
         <div className="hidden sm:flex sm:ml-20 sm:p-12 bg-cover bg-no-repeat bg-center">
-          <div className="pt-16 sm:pt-80 sm:mt-20 sm:pl-10 sm:pr-12 w-full">
+          <div className="pt-16 xl:pt-80 sm:mt-20 sm:pl-10 sm:pr-12 w-full">
             <h1 className="text-green-500 sm:text-6xl text-2xl pt-4 pb-1 mb-1 sm:mb-7 font-extrabold ml-8 sm:ml-0">Discover Flavour at every corner!</h1>
             <h2 className="pt-0 pb-8 mb-2 sm:text-3xl text-lg pl-8 sm:pl-0 text-white font-medium">Your ultimate neighbourhood food hub,</h2>
             <div className="flex flex-col py-3 sm:pb-4 sm:pt-4 sm:pl-3 sm:pr-3 max-w-5xl mx-auto border rounded-xl bg-white ml-3 sm:ml-0">
