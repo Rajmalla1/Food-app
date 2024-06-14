@@ -1,11 +1,54 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from "next/image";
 import CustomButton from './CustomButton';
+import { useRouter } from 'next/navigation'
+
+interface FoodItem{
+  id:number;
+  name:  string;
+  description: string
+}
 
 const Hero = () => {
   const handleClick = () => {
     console.log("Searching for food...");
+  };
+
+  const [data, setData] = useState<FoodItem[]>([]); // for storing fetched data
+  const [searchInput, setSearchInput] = useState(''); // for storing search input from user
+  const [filteredResults, setFilteredResults] = useState<FoodItem[]>([]); // for storing filtered result
+  const router = useRouter(); // Initialize the router
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/search.json');
+        const result = await response.json();
+        setData(result);
+        console.log('Data fetched');
+      } catch (error) {
+        console.error('Error fetching the data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(event.target.value);
+  };
+
+    const handleItemClick = (id: any) => {
+    router.push(`/food/page?id=${id}`);
+  };
+
+ 
+  const searchClick = () => {
+    console.log("Searching for food...");
+    const results = data.filter(item =>
+      item.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    setFilteredResults(results);
   };
 
   return (
@@ -32,17 +75,34 @@ const Hero = () => {
             <h2 className="pt-0 pb-8 mb-2 sm:text-3xl text-lg pl-8 sm:pl-0 text-white font-medium">Your ultimate neighbourhood food hub,</h2>
             <div className="flex flex-col py-3 sm:pb-4 sm:pt-4 sm:pl-3 sm:pr-3 max-w-5xl mx-auto border rounded-xl bg-white ml-3 sm:ml-0">
               <div className="search-bar flex flex-col sm:flex-row items-center justify-center sm:justify-between max-w-5xl w-full bg-white">
-                <input
-                  type="text"
-                  placeholder="Type in something you’re craving right now"
-                  className="rounded-lg py-3 md:px-6 border mb-3 sm:mb-0 border-gray-300 bg-white focus:outline-none focus:border-primary-blue flex-1 text-base md:text-lg  text-gray-900 sm:mr-3 md:ml-2"
+              <input
+               type="text"
+                placeholder="Type in something"
+                value={searchInput}
+                onChange={handleSearchInput} 
+                className="rounded-lg py-2 px-4 border mb-2 sm:mb-0 border-gray-300 bg-white focus:outline-none focus:border-primary-blue flex-1 text-gray-400 sm:mr-2"
                 />
                 <CustomButton
                   title="Find Food"
                   containerStyles="bg-green-500 border text-sm md:text-base md:font-bold text-white rounded-lg py-1 sm:py-3 lg:py-4\3 px-1 sm:px-1 md:px-5 md:ml-5 md:mr-2 border border-green-500 "
-                  handleClick={handleClick}
+                  handleClick={searchClick}
                 />
+
               </div>
+             
+      {filteredResults.length > 0 && (
+        <div className="mt-4">
+          <h3 className="text-lg font-bold">Search Results:</h3>
+          <ul>
+            {filteredResults.map(item => (
+              <li  key={item.id} onClick={()=>  handleItemClick(item.id)} >
+                <h4 className="font-semibold hover:cursor-pointer">{item.name}</h4>
+                
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
             </div>
           </div>
         </div>
@@ -63,6 +123,8 @@ const Hero = () => {
         <input
           type="text"
           placeholder="Type in something"
+          value={searchInput}
+          onChange={handleSearchInput}
           className="rounded-lg py-2 px-4 border mb-2 sm:mb-0 border-gray-300 bg-white focus:outline-none focus:border-primary-blue flex-1 text-gray-400 sm:mr-2"
         />
       </div>
@@ -73,6 +135,19 @@ const Hero = () => {
           handleClick={handleClick}
         />
       </div>
+      {filteredResults.length > 0 && (
+                <div className="mt-4">
+                  <h3 className="text-lg font-bold">Search Results:</h3>
+                  <ul>
+                    {filteredResults.map(item => (
+                      <li key={item.id}>
+                        <h4 className="font-semibold">{item.name}</h4>
+                        <p>{item.description}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
     </div>
   </div>
 </div>

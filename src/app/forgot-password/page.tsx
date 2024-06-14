@@ -9,10 +9,11 @@ interface User {
 }
 
 const ForgotPassword = () => {
-    const [user, setUser] = useState<User>({ email: "" });
+    const [user, setUser] = useState<User>(
+      { email: "" });
 
     const onForgotPassword = async () => {
-        // Implement password reset logic here
+        // password reset logic here
     };
 
     return (
@@ -63,17 +64,12 @@ const ForgotPassword = () => {
                 />
 
                 <CustomButton
-                    title="Sign-Up"
+                    title="Submit"
                     containerStyles="bg-green-500 border text-white rounded-lg mt-4 w-3/4 h-12 hover:bg-green-600 hover:text-white"
                     handleClick={onForgotPassword}
                 />
 
-                <p className='text-slate-500 text-xs md:text-base mt-2'>
-                    Don’t have an account?
-                    <Link className='text-green-500 text-sm md:text-base font-semibold ml-2 hover:text-green-600' href={'/signup'}>
-                        Sign Up
-                    </Link>
-                </p>
+                
 
                 <div className='flex flex-row sm:flex-row items-center justify-center lg:justify-start sm:justify-center mt-4 md:pt-10 md:-ml-2 xl:ml-0 md:items-center flex-wrap md:flex-nowrap md:mt-auto lg:w-3/4'>
                     <h1 className='text-slate-500 text-xs md:text-sm md:mr-1 lg:mr-2 cursor-pointer hover:underline font-bold' onClick={onForgotPassword}>

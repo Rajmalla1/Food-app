@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Pizza",
+    "description": "Delicious Italian dish topped with cheese, tomatoes, and various toppings."
+  },
+  {
+    "id": 2,
+    "name": "Burger",
+    "description": "A juicy beef patty served in a bun with lettuce, tomato, and condiments."
+  },
+  {
+    "id": 3,
+    "name": "Sushi",
+    "description": "Japanese delicacy consisting of vinegared rice, seafood, and vegetables."
+  },
+  {
+    "id": 4,
+    "name": "Tacos",
+    "description": "Mexican street food made with a corn or wheat tortilla filled with various ingredients."
+  },
+  {
+    "id": 5,
+    "name": "Pasta",
+    "description": "Italian staple dish made from unleavened dough of durum wheat flour."
+  }
+]

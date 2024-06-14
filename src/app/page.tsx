@@ -1,3 +1,4 @@
+'use client'
 import CustomButton from "./components/CustomButton";
 import FoodComponent from "./components/FoodComponent";
 import Footer from "./components/Footer";
@@ -5,11 +6,22 @@ import Hero from "./components/Hero";
 import BoxComponent from "./components/LocationBox";
 import NavBar from "./components/Navbar";
 import ReviewComponent from "./components/Review";
-
+import reviewData from '../../public/review.json';
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  
-  
+  const [shuffledReviews, setShuffledReviews] = useState<{
+    id: number;
+    date: string;
+    starRating: number;
+    review: string;
+    image: string;
+    userName: string;
+  }[]>([]);  useEffect(() => {
+    
+    const shuffled = [...reviewData.reviewData].sort(() => Math.random() - 0.5);
+    setShuffledReviews(shuffled.slice(0, 3));
+  }, []);  
   return (
     <main>
       <NavBar />
@@ -69,11 +81,18 @@ export default function Home() {
           What people Think <span className="text-green-500"> About Us?</span>
         </h1>
       </div>
+
+
       <div className="flex justify-center text-center flex-wrap">
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-          <ReviewComponent date={new Date()} starRating={0} review={"In the quiet hours of dawn, when the world slumbers and dreams dance on the edges of consciousness, there exists a realm untouched by the rush of time. Here, whispers of forgotten tales linger in the dew-kissed air, where shadows weave intricate patterns upon the earth. It is a place where the heart finds solace and the mind finds peace, where the gentle melody of nature's symphony orchestrates a harmonious symphony."} image={""} userName={""} />
-          <ReviewComponent date={new Date()} starRating={0} review={"In the quiet hours of dawn, when the world slumbers and dreams dance on the edges of consciousness, there exists a realm untouched by the rush of time. Here, whispers of forgotten tales linger in the dew-kissed air, where shadows weave intricate patterns upon the earth. It is a place where the heart finds solace and the mind finds peace, where the gentle melody of nature's symphony orchestrates a harmonious symphony."} image={""} userName={""} />
-          <ReviewComponent date={new Date()} starRating={0} review={"In the quiet hours of dawn, when the world slumbers and dreams dance on the edges of consciousness, there exists a realm untouched by the rush of time. Here, whispers of forgotten tales linger in the dew-kissed air, whispers of forgotten tales linger in the dew-kissed air,  ."} image={""} userName={""} />
+          {shuffledReviews.map(review=>(
+
+         
+          <ReviewComponent
+          key={review.id}
+          date={new Date(review.date)} starRating={review.starRating} review={review.review} image={review.image} userName={review.userName} />
+        ))}
+          
         </div>
       </div>
       <div className="flex justify-center items-center mt-10 mb-20">
